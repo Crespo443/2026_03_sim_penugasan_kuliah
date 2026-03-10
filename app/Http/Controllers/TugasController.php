@@ -54,7 +54,7 @@ class TugasController extends Controller
         $validated['user_id'] = auth()->id();
 
         if ($request->hasFile('file')) {
-            dd($request->file('file'));
+            // dd($request->file('file'));
             $validated['file'] = $request->file('file')->store('tugas', 'public');
         }
 
