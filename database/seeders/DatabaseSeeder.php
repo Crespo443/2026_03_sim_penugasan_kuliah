@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\MataKuliah;
+use App\Models\Tugas;
+use App\Models\Reminder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -21,5 +24,26 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
+
+        User::factory()->create([
+            'name' => 'Ridho Saputra',
+            'email' => 'ridho@gmail.com',
+            'nim' => '222140'
+        ]);
+
+        User::factory(5)->create()->each(function ($user) {
+            $mataKuliahs = MataKuliah::factory(3)->create();
+            foreach ($mataKuliahs as $mk) {
+                $tugasList = Tugas::factory(2)->create([
+                    'user_id' => $user->id,
+                    'mata_kuliah_id' => $mk->id,
+                ]);
+                foreach ($tugasList as $tugas) {
+                    Reminder::factory(1)->create([
+                        'tugas_id' => $tugas->id,
+                    ]);
+                }
+            }
+        });
     }
 }

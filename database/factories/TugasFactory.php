@@ -1,0 +1,25 @@
+<?php
+namespace Database\Factories;
+
+use App\Models\Tugas;
+use App\Models\User;
+use App\Models\MataKuliah;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class TugasFactory extends Factory
+{
+    protected $model = Tugas::class;
+
+    public function definition(): array
+    {
+        return [
+            'user_id' => User::factory(),
+            'mata_kuliah_id' => MataKuliah::factory(),
+            'judul' => $this->faker->sentence(3),
+            'deskripsi' => $this->faker->paragraph(),
+            'deadline' => $this->faker->dateTimeBetween('+1 days', '+1 month'),
+            'status' => $this->faker->randomElement(['Belum', 'Progress', 'Selesai']),
+            'progress' => $this->faker->numberBetween(0, 100),
+        ];
+    }
+}
