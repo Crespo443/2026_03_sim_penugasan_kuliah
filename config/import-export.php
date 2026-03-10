@@ -39,7 +39,7 @@ return [
         ],
         'required' => ['kode', 'nama', 'sks', 'kelas', 'dosen', 'hari', 'jam_mulai', 'jam_selesai', 'semester', 'tahun_ajaran'],
         'resolvers' => [
-            'is_active' => fn($model) => $model->is_active ? 'Ya' : 'Tidak',
+            'is_active' => [\App\Helpers\ImportExportHelper::class, 'resolveIsActive'],
         ],
         'import_columns' => [
             'kode', 'nama', 'sks', 'kelas', 'dosen', 'ruangan', 'hari', 'jam_mulai', 'jam_selesai',
@@ -50,7 +50,7 @@ return [
             'LMS', 'LMS Link', 'Semester', 'Tahun Ajaran', 'Warna', 'Catatan', 'Aktif'
         ],
         'importers' => [
-            'is_active' => fn($value) => in_array(strtolower(trim($value ?? '')), ['ya', 'yes', '1', 'true', 'aktif'], true) ? 1 : 0,
+            'is_active' => [\App\Helpers\ImportExportHelper::class, 'importIsActive'],
         ],
         'unique_by' => ['kelas', 'tahun_ajaran', 'semester'],
     ],
@@ -80,7 +80,7 @@ return [
             'Judul', 'Mata Kuliah (Kode)', 'Deskripsi', 'Deadline (YYYY-MM-DD)', 'Status', 'Progress (%)', 'Prioritas', 'Catatan'
         ],
         'importers' => [
-            'mata_kuliah_id' => fn($value) => \App\Models\MataKuliah::where('kode', $value)->value('id'),
+            'mata_kuliah_id' => [\App\Helpers\ImportExportHelper::class, 'importMataKuliahId'],
         ],
         'import_field_map' => [
             'mata_kuliah' => 'mata_kuliah_id', // kolom input → kolom DB sebenarnya
