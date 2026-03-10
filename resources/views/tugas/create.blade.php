@@ -7,9 +7,10 @@
         </x-layouts.page-header>
     </x-slot:header>
 
-    <x-ui.card class="max-w-2xl">
-        <form method="POST" action="{{ route('tugas.store') }}" class="space-y-4">
+    <x-ui.card class="">
+        <form method="POST" action="{{ route('tugas.store') }}" class="space-y-4" enctype="multipart/form-data">
             @csrf
+            <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
 
             <x-ui.select name="mata_kuliah_id" label="Mata Kuliah" :required="true" placeholder="Pilih mata kuliah"
                 :options="$mataKuliah->pluck('nama', 'id')->toArray()" />
@@ -26,6 +27,15 @@
                 <x-ui.input name="progress" label="Progress (%)" type="number" placeholder="0" value="0" :required="true" />
             </div>
 
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <x-ui.select name="prioritas" label="Prioritas" :required="true" placeholder="Pilih prioritas"
+                    :options="['rendah' => 'Rendah', 'sedang' => 'Sedang', 'tinggi' => 'Tinggi']"
+                    value="sedang" />
+                <x-ui.input name="file" label="Upload File (PDF/IMG)" type="file" accept="application/pdf,image/*" />
+            </div>
+
+            <x-ui.textarea name="catatan" label="Catatan" placeholder="Catatan tambahan (opsional)" />
+
             <div class="flex justify-end gap-2 pt-4">
                 <x-ui.button type="ghost" :href="route('tugas.index')" :isSubmit="false">Batal</x-ui.button>
                 <x-ui.button type="primary">
@@ -34,6 +44,7 @@
                     </svg>
                     Simpan Tugas
                 </x-ui.button>
+            </div>
             </div>
         </form>
     </x-ui.card>

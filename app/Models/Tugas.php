@@ -8,7 +8,8 @@ class Tugas extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'user_id', 'mata_kuliah_id', 'judul', 'deskripsi', 'deadline', 'status', 'progress'
+        'user_id', 'mata_kuliah_id', 'judul', 'deskripsi', 'deadline', 'status', 'progress',
+        'prioritas', 'file', 'catatan'
     ];
 
     public function user()

@@ -46,9 +46,17 @@ class TugasController extends Controller
             'deadline' => 'required|date|after_or_equal:today',
             'status' => 'required|in:belum,progress,selesai',
             'progress' => 'required|integer|min:0|max:100',
+            'prioritas' => 'required|in:rendah,sedang,tinggi',
+            'file' => 'nullable',
+            'catatan' => 'nullable|string',
         ]);
 
         $validated['user_id'] = auth()->id();
+
+        if ($request->hasFile('file')) {
+            dd($request->file('file'));
+            $validated['file'] = $request->file('file')->store('tugas', 'public');
+        }
 
         Tugas::create($validated);
 
@@ -81,7 +89,16 @@ class TugasController extends Controller
             'deadline' => 'required|date',
             'status' => 'required|in:belum,progress,selesai',
             'progress' => 'required|integer|min:0|max:100',
+            'prioritas' => 'required|in:rendah,sedang,tinggi',
+            'file' => 'nullable',
+            'catatan' => 'nullable|string',
         ]);
+
+
+
+        if ($request->hasFile('file')) {
+            $validated['file'] = $request->file('file')->store('tugas', 'public');
+        }
 
         $tugas->update($validated);
 

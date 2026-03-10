@@ -49,7 +49,7 @@
             </x-ui.card>
 
             {{-- Progress Update Section --}}
-            <x-ui.card title="📊 Progress">
+            <x-ui.card title="Progress">
                 <div class="mb-4">
                     <div class="flex items-center justify-between mb-2">
                         <span class="text-sm font-medium">Progress Tugas</span>
@@ -81,7 +81,7 @@
         <div class="space-y-6">
 
             {{-- Info Card --}}
-            <x-ui.card title="📋 Informasi">
+            <x-ui.card title="Informasi">
                 <div class="space-y-4">
                     <div>
                         <div class="text-xs text-base-content/50 uppercase tracking-wide">Mata Kuliah</div>

@@ -20,6 +20,9 @@ class TugasFactory extends Factory
             'deadline' => $this->faker->dateTimeBetween('+1 days', '+1 month'),
             'status' => $this->faker->randomElement(['Belum', 'Progress', 'Selesai']),
             'progress' => $this->faker->numberBetween(0, 100),
+            'prioritas' => $this->faker->randomElement(['rendah', 'sedang', 'tinggi']),
+            'file' => $this->faker->optional()->url(),
+            'catatan' => $this->faker->optional()->sentence(),
         ];
     }
 }

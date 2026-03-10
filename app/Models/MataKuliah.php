@@ -8,7 +8,8 @@ class MataKuliah extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'kode', 'nama', 'dosen', 'ruangan', 'hari', 'jam_mulai', 'jam_selesai'
+        'kode', 'nama', 'sks', 'kelas', 'dosen', 'ruangan', 'hari', 'jam_mulai', 'jam_selesai',
+        'lms', 'lms_link', 'semester', 'tahun_ajaran', 'warna', 'catatan', 'is_active'
     ];
 
     public function tugas()

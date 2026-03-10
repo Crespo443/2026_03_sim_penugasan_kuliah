@@ -9,7 +9,7 @@
         </x-layouts.page-header>
     </x-slot:header>
 
-    <x-ui.card class="max-w-2xl">
+    <x-ui.card class="">
         <form method="POST" action="{{ route('mata-kuliah.store') }}" class="space-y-4">
             @csrf
 
@@ -38,6 +38,26 @@
                 <x-ui.input name="jam_selesai" label="Jam Selesai" type="time" :required="true" />
             </div>
 
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <x-ui.input name="sks" label="SKS" type="number" min="1" max="4" placeholder="Jumlah SKS" />
+                <x-ui.input name="kelas" label="Kelas" placeholder="Contoh: A, B, C" />
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <x-ui.input name="lms" label="LMS" placeholder="Contoh: Moodle, Google Classroom" />
+                <x-ui.input name="lms_link" label="LMS Link" placeholder="URL LMS" />
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <x-ui.input name="semester" label="Semester" type="number" min="1" max="8" placeholder="Semester" />
+                <x-ui.input name="tahun_ajaran" label="Tahun Ajaran" type="number" min="2020" max="2100" placeholder="Tahun" />
+            </div>
+
+            <x-ui.input name="warna" label="Warna" placeholder="Contoh: biru, merah" />
+            <x-ui.textarea name="catatan" label="Catatan" placeholder="Catatan tambahan" />
+
+            <x-ui.checkbox name="is_active" label="Aktif?"  checked />
+
             <div class="flex justify-end gap-2 pt-4">
                 <x-ui.button type="ghost" :href="route('mata-kuliah.index')" :isSubmit="false">Batal</x-ui.button>
                 <x-ui.button type="primary">
@@ -47,6 +67,8 @@
                     Simpan
                 </x-ui.button>
             </div>
+            </div>
+
         </form>
     </x-ui.card>
 </x-layouts.app>

@@ -145,7 +145,7 @@ Bisa:
 
 # 3. Role User
 
-### 👨‍🎓 Mahasiswa
+### Mahasiswa
 
 Bisa:
 
@@ -288,13 +288,13 @@ Status
 
 # 7. Fitur Tambahan (Supaya Project Lebih Keren)
 
-### 🔔 Notifikasi
+### Notifikasi
 
 Email / push notification
 
 ---
 
-### 📊 Statistik
+###  Statistik
 
 ```
 Total tugas
@@ -304,7 +304,7 @@ Produktivitas minggu ini
 
 ---
 
-### 🤖 AI Assistant (opsional)
+###  AI Assistant (opsional)
 
 Contoh:
 
@@ -314,7 +314,7 @@ AI: Tugas apa yang harus saya kerjakan hari ini?
 
 ---
 
-### 🧠 Smart Priority
+### Smart Priority
 
 Sistem menentukan prioritas tugas.
 

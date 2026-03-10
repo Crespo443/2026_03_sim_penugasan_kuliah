@@ -51,21 +51,21 @@
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
         {{-- Tugas per Status (Donut Chart) --}}
-        <x-ui.card title="📊 Tugas per Status">
+        <x-ui.card title="Tugas per Status">
             <div class="h-72">
                 <canvas id="statusChart"></canvas>
             </div>
         </x-ui.card>
 
         {{-- Tugas per Mata Kuliah (Bar Chart) --}}
-        <x-ui.card title="📚 Tugas per Mata Kuliah">
+        <x-ui.card title="Tugas per Mata Kuliah">
             <div class="h-72">
                 <canvas id="mataKuliahChart"></canvas>
             </div>
         </x-ui.card>
 
         {{-- Overall Progress (Gauge-like) --}}
-        <x-ui.card title="🎯 Progress Keseluruhan" class="lg:col-span-2">
+        <x-ui.card title="Progress Keseluruhan" class="lg:col-span-2">
             <div class="flex flex-col items-center py-4">
                 <div class="radial-progress text-primary text-2xl font-bold"
                      style="--value:{{ round($avgProgress) }}; --size:10rem; --thickness:0.8rem;"
@@ -74,13 +74,13 @@
                 </div>
                 <p class="text-base-content/60 mt-4 text-center">
                     @if($avgProgress >= 80)
-                        🎉 Luar biasa! Kamu hampir menyelesaikan semua tugas!
+                        Luar biasa! Kamu hampir menyelesaikan semua tugas!
                     @elseif($avgProgress >= 50)
-                        💪 Bagus! Terus kerjakan tugas-tugas yang tersisa.
+                        Bagus! Terus kerjakan tugas-tugas yang tersisa.
                     @elseif($avgProgress >= 25)
-                        📝 Ayo tingkatkan progress tugasmu!
+                        Ayo tingkatkan progress tugasmu!
                     @else
-                        🚀 Mulai kerjakan tugasmu sekarang!
+                        Mulai kerjakan tugasmu sekarang!
                     @endif
                 </p>
             </div>

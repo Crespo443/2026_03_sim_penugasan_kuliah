@@ -15,6 +15,7 @@ class ReminderFactory extends Factory
             'tugas_id' => Tugas::factory(),
             'tanggal_notifikasi' => $this->faker->dateTimeBetween('now', '+1 month'),
             'status' => $this->faker->randomElement(['Belum', 'Terkirim']),
+            'terkirim' => $this->faker->boolean(20),
         ];
     }
 }

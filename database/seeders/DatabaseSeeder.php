@@ -20,18 +20,12 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
 
         User::factory()->create([
             'name' => 'Ridho Saputra',
             'email' => 'ridho@gmail.com',
             'nim' => '222140'
-        ]);
-
-        User::factory(5)->create()->each(function ($user) {
+        ])->each(function ($user) {
             $mataKuliahs = MataKuliah::factory(3)->create();
             foreach ($mataKuliahs as $mk) {
                 $tugasList = Tugas::factory(2)->create([
@@ -45,5 +39,6 @@ class DatabaseSeeder extends Seeder
                 }
             }
         });
+
     }
 }

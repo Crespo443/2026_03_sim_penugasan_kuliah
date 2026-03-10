@@ -19,7 +19,7 @@
     'required' => false,
     'layout' => 'horizontal',
     'helpText' => null,
-    'single' => false,
+    'single' => true,
 ])
 
 <div class="form-control w-full">

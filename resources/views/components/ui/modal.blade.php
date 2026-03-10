@@ -7,12 +7,30 @@
     @param bool $closeButton - Show close button
 --}}
 
+
 @props([
-'id',
-'title' => null,
-'size' => 'md',
-'closeButton' => true,
+    'id',
+    'title' => null,
+    'size' => 'md',
+    'closeButton' => true,
+    'centered' => true,
 ])
+
+@php
+$sizeClass = match($size) {
+    'sm' => 'max-w-sm',
+    'md' => 'max-w-lg',
+    'lg' => 'max-w-3xl',
+    'xl' => 'max-w-5xl',
+    default => 'max-w-lg',
+};
+$modalPositionClass = $centered ? 'modal-middle' : 'modal-bottom sm:modal-middle';
+@endphp
+
+@php
+    // Allow dynamic title via slot if provided
+    $hasTitleSlot = isset($title) && $title === null && $attributes->has('title');
+@endphp
 
 @php
 $sizeClass = match($size) {
@@ -24,12 +42,14 @@ default => 'max-w-lg',
 };
 @endphp
 
-<dialog id="{{ $id }}" class="modal modal-bottom sm:modal-middle ">
+<dialog id="{{ $id }}" class="modal {{ $modalPositionClass }}">
     <div class="modal-box {{ $sizeClass }}">
-        @if($title || $closeButton)
+        @if($title || $closeButton || (isset($title) && trim($title) === '' && isset($titleSlot)))
         <div class="flex justify-between items-center mb-4">
-            @if($title)
-            <h3 class="font-bold text-lg">{{ $title }}</h3>
+            @if(isset($titleSlot))
+                {{ $titleSlot }}
+            @elseif($title)
+                <h3 class="font-bold text-lg">{{ $title }}</h3>
             @endif
             @if($closeButton)
             <form method="dialog">

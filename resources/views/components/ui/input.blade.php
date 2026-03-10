@@ -66,10 +66,15 @@ $inputId = $name . '_' . uniqid();
         </button>
     </div>
     @else
-    <input type="{{ $type }}" id="{{ $inputId }}" name="{{ $name }}" placeholder="{{ $placeholder }}"
-        value="{{ old($name, $value) }}"
+    <div class="flex items-center gap-2">
+        <input type="{{ $type }}" id="{{ $inputId }}" name="{{ $name }}" placeholder="{{ $placeholder }}"
+        @if($type !== 'file') value="{{ old($name, $value) }}" @endif
         {{ $attributes->merge(['class' => 'input input-bordered w-full' . ($error ? ' input-error' : '')]) }}
-        {{ $required ? 'required' : '' }} />
+            {{ $required ? 'required' : '' }} />
+        @if($type === 'file' && $value)
+            <a href="{{ Storage::url($value) }}" target="_blank" class="btn  btn-outline">Lihat File</a>
+        @endif
+    </div>
     @endif
 
 

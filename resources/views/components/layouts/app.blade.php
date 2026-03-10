@@ -8,6 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#1e40af">
+    <link rel="apple-touch-icon" href="{{ asset('icons/icon-192x192.png') }}">
+    <link rel="manifest" href="{{ asset('build/manifest.webmanifest') }}">
+
     <title>{{ $title ?? 'Dashboard' }} - {{ config('app.name', 'SIM Penugasan Kuliah') }}</title>
 
     <!-- Fonts -->

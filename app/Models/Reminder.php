@@ -8,7 +8,7 @@ class Reminder extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'tugas_id', 'tanggal_notifikasi', 'status'
+        'tugas_id', 'tanggal_notifikasi', 'status', 'terkirim'
     ];
 
     public function tugas()

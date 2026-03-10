@@ -10,10 +10,10 @@
             $alertType = $daysLeft <= 0 ? 'error' : ($daysLeft <= 1 ? 'warning' : 'info');
             $alertMsg =
                 $daysLeft <= 0
-                    ? '⚠️ Deadline ' . $reminder->judul . ' sudah lewat!'
+                    ? 'Deadline ' . $reminder->judul . ' sudah lewat!'
                     : ($daysLeft <= 1
-                        ? '⚠️ Deadline ' . $reminder->judul . ' besok!'
-                        : '📌 Deadline ' . $reminder->judul . ' ' . ceil($daysLeft) . ' hari lagi');
+                        ? 'Deadline ' . $reminder->judul . ' besok!'
+                        : 'Deadline ' . $reminder->judul . ' ' . ceil($daysLeft) . ' hari lagi');
         @endphp
         <x-ui.alert :type="$alertType" :dismissible="true" class="mb-3">
             {{ $alertMsg }}
@@ -78,7 +78,7 @@
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
         {{-- Jadwal Hari Ini --}}
-        <x-ui.card title="📅 Jadwal Hari Ini">
+        <x-ui.card title="Jadwal Hari Ini">
             @if ($jadwalHariIni->isEmpty())
                 <div class="text-center py-8 text-base-content/50">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto mb-3 opacity-40" fill="none"
@@ -121,7 +121,7 @@
         </x-ui.card>
 
         {{-- Deadline Terdekat --}}
-        <x-ui.card title="⏰ Deadline Terdekat">
+        <x-ui.card title="Deadline Terdekat">
             @if ($deadlineTerdekat->isEmpty())
                 <div class="text-center py-8 text-base-content/50">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto mb-3 opacity-40" fill="none"
