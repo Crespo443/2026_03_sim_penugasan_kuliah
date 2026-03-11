@@ -80,7 +80,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
                     </svg>
-                    <p class="text-sm">Tidak ada jadwal hari ini 🎉</p>
+                    <p class="text-sm">Tidak ada jadwal hari ini </p>
                 </div>
             @else
                 <div class="overflow-x-auto">
@@ -123,7 +123,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    <p class="text-sm">Tidak ada deadline mendekat 👍</p>
+                    <p class="text-sm">Tidak ada deadline mendekat</p>
                 </div>
             @else
                 <div class="space-y-3">

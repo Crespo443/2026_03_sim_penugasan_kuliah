@@ -18,12 +18,12 @@
             <div class="flex-1 min-w-[180px]">
                 <x-ui.input name="search" label="Cari" placeholder="Cari judul tugas..." :value="request('search')" />
             </div>
-            <div class="w-44">
+            <div class="w-full">
                 <x-ui.select name="status" label="Status" :searchable="false" placeholder="Semua Status"
                     :options="['belum' => 'Belum', 'progress' => 'Progress', 'selesai' => 'Selesai']"
                     :value="request('status')" />
             </div>
-            <div class="w-52">
+            <div class="flex-1 min-w-[180px]">
                 <x-ui.select name="mata_kuliah_id" label="Mata Kuliah" :searchable="true" placeholder="Semua Mata Kuliah"
                     :options="$mataKuliah->pluck('nama', 'id')->toArray()"
                     :value="request('mata_kuliah_id')" />

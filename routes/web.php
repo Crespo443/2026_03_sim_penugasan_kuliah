@@ -35,6 +35,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('tugas/{tugas}', [TugasController::class , 'destroy'])->name('tugas.destroy');
     Route::patch('tugas/{tugas}/progress', [TugasController::class , 'updateProgress'])->name('tugas.progress');
 
+    // Todo
+    Route::resource('todo', \App\Http\Controllers\TodoController::class);
+
     // Kalender
     Route::get('/kalender', [KalenderController::class , 'index'])->name('kalender.index');
 

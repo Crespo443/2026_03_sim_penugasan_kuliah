@@ -26,4 +26,9 @@ class Tugas extends Model
     {
         return $this->hasMany(Reminder::class);
     }
+
+    public function todos()
+    {
+        return $this->hasMany(Todo::class);
+    }
 }

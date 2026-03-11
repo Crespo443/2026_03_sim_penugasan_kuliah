@@ -17,95 +17,14 @@
         </button>
 
         {{-- Page title --}}
-        <h1 class="text-lg font-semibold text-base-content hidden sm:block">{{ $title }}</h1>
+        <h1 class="text-lg font-semibold text-base-content ">{{ $title }}</h1>
     </div>
 
     <div class="flex-1"></div>
 
     <div class="flex-none flex items-center gap-2">
-        {{-- Search --}}
-        <div class="form-control " x-data="globalSearch()" @click.away="open = false"
-            @keydown.escape.window="open = false">
-            <div class="relative hidden lg:block">
-                <input type="text" placeholder="Cari... (Ctrl+K)"
-                    class="input input-sm input-bordered w-48 lg:w-72 pr-8" x-model="query"
-                    @input.debounce.300ms="search()" @focus="if (results.length) open = true"
-                    @keydown.ctrl.k.window.prevent="$el.focus()" @keydown.arrow-down.prevent="moveDown()"
-                    @keydown.arrow-up.prevent="moveUp()" @keydown.enter.prevent="goToSelected()" />
-                {{-- Search icon / Loading spinner --}}
-                <template x-if="!loading">
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                        class="h-4 w-4 absolute right-2.5 top-2.5 text-base-content/40" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                </template>
-                <template x-if="loading">
-                    <span class="loading loading-spinner loading-xs absolute right-2.5 top-2.5 text-primary"></span>
-                </template>
 
-                {{-- Search Results Dropdown --}}
-                <div x-show="open" x-transition:enter="transition ease-out duration-150"
-                    x-transition:enter-start="opacity-0 -translate-y-1"
-                    x-transition:enter-end="opacity-100 translate-y-0"
-                    x-transition:leave="transition ease-in duration-100"
-                    x-transition:leave-start="opacity-100 translate-y-0"
-                    x-transition:leave-end="opacity-0 -translate-y-1"
-                    class="absolute top-full right-0 mt-2 w-96 bg-base-100 rounded-box shadow-xl border border-base-300 z-50 overflow-hidden">
-                    {{-- Results --}}
-                    <div class="max-h-80 overflow-y-auto" x-ref="resultsList">
-                        <template x-if="results.length === 0 && query.length >= 2 && !loading">
-                            <div class="p-4 text-center text-base-content/60">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mx-auto mb-2 opacity-40"
-                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                                <p class="text-sm">Tidak ada hasil untuk "<span x-text="query"
-                                        class="font-semibold"></span>"</p>
-                            </div>
-                        </template>
-
-                        <template x-for="(result, index) in results" :key="index">
-                            <a :href="result.url"
-                                class="flex items-center gap-3 px-4 py-2.5 hover:bg-base-200 cursor-pointer transition-colors border-b border-base-200 last:border-b-0"
-                                :class="{ 'bg-base-200': selectedIndex === index }" @mouseenter="selectedIndex = index">
-                                <div
-                                    class="flex-shrink-0 w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
-                                    <span x-html="getIcon(result.icon)" class="text-primary w-4 h-4"></span>
-                                </div>
-                                <div class="flex-1 min-w-0">
-                                    <p class="text-sm font-medium truncate" x-text="result.title"></p>
-                                    <p class="text-xs text-base-content/60 truncate" x-text="result.subtitle"></p>
-                                </div>
-                                <x-ui.badge type="ghost" size="xs" x-text="result.category" />
-                            </a>
-                        </template>
-                    </div>
-
-                    {{-- Footer --}}
-                    <template x-if="results.length > 0">
-                        <div class="px-4 py-2 border-t border-base-200 bg-base-200/30">
-                            <div class="flex items-center justify-between">
-                                <span class="text-xs text-base-content/50"><span x-text="results.length"></span> hasil
-                                    ditemukan</span>
-                                <div class="flex items-center gap-1 text-xs text-base-content/50">
-                                    <kbd class="kbd kbd-xs">&uarr;</kbd>
-                                    <kbd class="kbd kbd-xs">&darr;</kbd>
-                                    <span>navigasi</span>
-                                    <kbd class="kbd kbd-xs">Enter</kbd>
-                                    <span>pilih</span>
-                                </div>
-                            </div>
-                        </div>
-                    </template>
-                </div>
-            </div>
-        </div>
-
-
-
+        @include('components.layouts.partial.global-search')
 
         {{-- User dropdown --}}
         <div class="dropdown dropdown-end">
@@ -137,8 +56,8 @@
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <button type="submit" class="w-full text-left flex items-center gap-2 text-error">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                             </svg>
@@ -179,13 +98,13 @@
 
                     try {
                         const response = await fetch(
-                        `{{ route('global-search') }}?q=${encodeURIComponent(this.query)}`, {
-                            headers: {
-                                'Accept': 'application/json',
-                                'X-Requested-With': 'XMLHttpRequest',
-                            },
-                            signal: this.abortController.signal,
-                        });
+                            `{{ route('global-search') }}?q=${encodeURIComponent(this.query)}`, {
+                                headers: {
+                                    'Accept': 'application/json',
+                                    'X-Requested-With': 'XMLHttpRequest',
+                                },
+                                signal: this.abortController.signal,
+                            });
 
                         if (!response.ok) throw new Error('Search failed');
 
