@@ -7,7 +7,7 @@
     $user = auth()->user();
 @endphp
 
-<aside
+<aside x-cloak
     class="fixed top-0 left-0 z-50 h-screen w-64 bg-base-100 shadow-lg transition-transform duration-300 overflow-y-auto flex flex-col"
     :class="{
         'translate-x-0': sidebarMobileOpen,
